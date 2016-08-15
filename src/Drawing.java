@@ -8,10 +8,15 @@ public class Drawing {
 
   private ControlPanel m_control;
   private ContentPanel m_content;
+  private Storage m_storage;
 
-  public Drawing(final ControlPanel control, final ContentPanel content) {
+  public Drawing(final ControlPanel control, final ContentPanel content, Storage store) {
     m_control = control;
     m_content = content;
+    m_storage = store;
+
+    //Intialise id counter
+    m_storage.ids = 0;
 
     // register for events
     m_content.setController(this.new ContentEventHandler());
@@ -86,14 +91,34 @@ public class Drawing {
     contentPane.add(control, BorderLayout.PAGE_START);
     contentPane.add(content, BorderLayout.CENTER);
 
+    Storage storage = new Storage();
+
     // create the controller
-    new Drawing(control, content);
+    new Drawing(control, content, storage);
 
     // adjust the frame size to fit its contents and make it visible
     frame.pack();
     frame.setVisible(true);
   }
 
+  /**
+   * Storage
+   * Store all draw calls in the storage class, and then query the storage class everytime re-draw is called
+   */
+  private void storeDrawing(int X1,int Y1, int X2, int Y2) {
+    m_storage.startX.add(X1);
+    m_storage.startY.add(Y1);
+    m_storage.finishX.add(X2);
+    m_storage.finishY.add(Y2);
+    m_storage.fill.add(m_control.getCurrentShapeFillSetting());
+    m_storage.shape.add(m_control.getCurrentShape());
+    m_storage.color.add(m_control.getCurrentColour());
+    m_storage.ids++;
+  }
+
+  public Storage getStorageClass() {
+    return m_storage;
+  }
 
   public static void main(String[] args) {
     System.out.println("*****************************************");
