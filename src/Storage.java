@@ -16,6 +16,8 @@ public class Storage {
     public Boolean fill;
     // Shape
     ControlPanel.MyShape shape;
+    // Text (might be blank)
+    public String text;
 
     public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape) {
         startX = m_x1;
@@ -25,5 +27,17 @@ public class Storage {
         myColor = m_color;
         fill = m_fill;
         shape = m_shape;
+        text = "";
+    }
+
+    public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape, String m_text) {
+        startX = m_x1;
+        startY = m_y1;
+        finishX = m_x2;
+        finishY = m_y2;
+        myColor = m_color;
+        fill = m_fill;
+        shape = m_shape;
+        text = m_text;
     }
 }
