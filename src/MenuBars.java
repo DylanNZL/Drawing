@@ -19,17 +19,17 @@ public class MenuBars extends JFrame implements ActionListener {
         getContentPane().setLayout(null);
 
 
-        JMenuBar menuB = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
 
-        this.setJMenuBar(menuB);
+        this.setJMenuBar(menuBar);
 
         applicationMenu = new JMenu("Application");
         applicationMenu.addActionListener(this);
-        menuB.add(applicationMenu);
+        menuBar.add(applicationMenu);
 
         helpMenu = new JMenu("Help");
         helpMenu.addActionListener(this);
-        menuB.add(helpMenu);
+        menuBar.add(helpMenu);
 
         quitItem = new JMenuItem("Quit");
         quitItem.addActionListener(this);

@@ -1,7 +1,10 @@
+import com.sun.org.apache.xpath.internal.operations.Variable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * The ContentPanel implements the canvas and forwards any user events to the
@@ -17,17 +20,23 @@ public class ContentPanel extends JPanel {
   private int mouseX2 = -1;
   private int mouseY2 = -1;
 
+  // Attributes
   private Color myColor = Color.red;
+  private Boolean fillShape = false;
+  private ControlPanel.MyShape shapeToDraw = ControlPanel.MyShape.Rectangle;
+  private String text = "";
+
 
   /**
    * The callback interface for controllers of this class.
    */
   public interface ContentViewListener extends MouseListener {
+
   }
 
   public ContentPanel() {
     super(null); // no layout manager
-    setPreferredSize(new Dimension(600, 400));
+    setPreferredSize(new Dimension(500, 500));
     setOpaque(true);
   }
 
@@ -50,24 +59,46 @@ public class ContentPanel extends JPanel {
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON ));
     // TODO draw
+    graphics.setColor(Color.white);
+    graphics.fillRect(0,0, getWidth(), getHeight());
+    graphics.setColor(myColor);
+    graphics.drawLine(mouseX1, mouseY1, mouseX2, mouseY2);
 
+    }
 
-    graphics.dispose();
-  }
-  @Override
   public void mousePressed(MouseEvent mev) {
     mouseX1 = mev.getX();
     mouseY1 = mev.getY();
-    myColor = Color.black;
   }
 
-  @Override
-  public void mouseReleased(MouseEvent mev) {
+  void mouseReleased(MouseEvent mev) {
+    System.out.println("Drawing line  from " + mouseX1 + "," + mouseY1
+            + " to " + mev.getX() + "," + mev.getY());
     mouseX2 = mev.getX();
     mouseY2 = mev.getY();
-    System.out.println("Drawing line  from " + mouseX1 + "," + mouseY1
-            + " to " + mouseX2 + "," + mouseY2);
-    myColor = Color.red;
     repaint();
   }
+
+  public void mouseDragged(MouseEvent mev) {
+    mouseX2 = mev.getX();
+    mouseY2 = mev.getY();
+    repaint();
+  }
+
+  public void setMyColor (Color change) {
+    myColor = change;
+  }
+
+  public void setFillShape (Boolean fill) {
+    fillShape = fill;
+  }
+
+  public void setShapeToDraw (ControlPanel.MyShape shape) {
+    shapeToDraw = shape;
+  }
+
+  public void setText (String newText) {
+    text = newText;
+  }
+
 }
