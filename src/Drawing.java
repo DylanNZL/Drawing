@@ -1,6 +1,6 @@
 import javax.swing.*;
-import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -14,19 +14,21 @@ public class Drawing {
   private int mouseY2 = -1;
   // Storage list that is used in content and drawing.
   public static ArrayList<Storage> m_storage = new ArrayList<>();
+  public static Storage m_Temp = new Storage();
 
   private Drawing(final ControlPanel control, final ContentPanel content) {
     m_control = control;
     m_content = content;
     // register for events
-    m_content.setController(this.new ContentEventHandler());
+    m_content.setController(this.new ContentEventHandler(), this.new ContentEventHandler());
   }
 
   /**
    * A ContentEventHandler handles events from the ContentPanel view.
+   * Changed from MouseInputAdaptor to MouseAdaptor as it handles more events (including mouseDragged)
    */
-  private class ContentEventHandler extends MouseInputAdapter implements
-      ContentPanel.ContentViewListener {
+  private class ContentEventHandler extends MouseAdapter implements
+      ContentPanel.ContentViewListener, ContentPanel.ContentViewMotionListener {
 
     @Override
     public void mousePressed(MouseEvent event) {
@@ -36,6 +38,7 @@ public class Drawing {
 
     @Override
     public void mouseReleased(MouseEvent event) {
+      m_Temp.zero();
       mouseX2 = event.getY();
       mouseY2 = event.getY();
       if (m_control.getCurrentShape() == ControlPanel.MyShape.Text) {
@@ -43,6 +46,20 @@ public class Drawing {
       } else {
         m_storage.add(new Storage(mouseX1, mouseX2, mouseY1, mouseY2, m_control.getCurrentColour(), m_control.getCurrentShapeFillSetting(), m_control.getCurrentShape()));
       }
+      m_content.repaint();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mev) {
+      mouseX2 = mev.getX();
+      mouseY2 = mev.getY();
+      m_Temp.setX1(mouseX1);
+      m_Temp.setY1(mouseY1);
+      m_Temp.setX2(mouseX2);
+      m_Temp.setY2(mouseY2);
+      m_Temp.setFill(m_control.getCurrentShapeFillSetting());
+      m_Temp.setShape(m_control.getCurrentShape());
+      m_Temp.setMyColor(Color.CYAN.darker());
       m_content.repaint();
     }
   }
