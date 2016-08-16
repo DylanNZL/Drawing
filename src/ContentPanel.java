@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 /**
  * The ContentPanel implements the canvas and forwards any user events to the
@@ -15,10 +17,6 @@ public class ContentPanel extends JPanel {
   private static final long serialVersionUID = 1L;
 
   // Mouse co-ordinates (*1 = start, *2 = end)
-  private int mouseX1 = -1;
-  private int mouseY1 = -1;
-  private int mouseX2 = -1;
-  private int mouseY2 = -1;
 
   // Attributes
   private Color myColor = Color.red;
@@ -61,44 +59,55 @@ public class ContentPanel extends JPanel {
     // TODO draw
     graphics.setColor(Color.white);
     graphics.fillRect(0,0, getWidth(), getHeight());
-    graphics.setColor(myColor);
-    graphics.drawLine(mouseX1, mouseY1, mouseX2, mouseY2);
-
+    for (int i = 0; i < Drawing.m_storage.size(); i++) {
+      System.out.println(Drawing.m_storage.get(i).startX + " " + Drawing.m_storage.get(i).startY + " " + Drawing.m_storage.get(i).finishY
+              + " " + Drawing.m_storage.get(i).finishY + " " + Drawing.m_storage.get(i).shape + " " + Drawing.m_storage.get(i).fill);
+      graphics.setColor(Drawing.m_storage.get(i).myColor);
+      if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Text) {
+        graphics.drawString(Drawing.m_storage.get(i).text, Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY);
+      } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Line) {
+        graphics.drawLine(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY, Drawing.m_storage.get(i).finishX, Drawing.m_storage.get(i).finishY);
+      } else {
+        if (Drawing.m_storage.get(i).startX > Drawing.m_storage.get(i).finishX) {
+          // if the finishing X co-ordinate is bigger than the start, switch them around.
+          int temp = Drawing.m_storage.get(i).startX;
+          Drawing.m_storage.get(i).startX = Drawing.m_storage.get(i).finishX;
+          Drawing.m_storage.get(i).finishX = temp;
+        }
+        if (Drawing.m_storage.get(i).startY > Drawing.m_storage.get(i).finishY) {
+          // if the finishing X co-ordinate is bigger than the start, switch them around.
+          int temp = Drawing.m_storage.get(i).startY;
+          Drawing.m_storage.get(i).startY = Drawing.m_storage.get(i).finishY;
+          Drawing.m_storage.get(i).finishY = temp;
+        }
+        if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Rectangle) {
+          if (Drawing.m_storage.get(i).fill) {
+            graphics.fillRect(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY);
+          } else {
+            graphics.drawRect(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY);
+          }
+        } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Ellipse) {
+          if (Drawing.m_storage.get(i).fill) {
+            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY));
+          } else {
+            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY));
+          }
+        } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Circle) {
+          if (Drawing.m_storage.get(i).fill) {
+            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX));
+          } else {
+            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
+                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX));
+          }
+        }
+      }
     }
-
-  public void mousePressed(MouseEvent mev) {
-    mouseX1 = mev.getX();
-    mouseY1 = mev.getY();
-  }
-
-  void mouseReleased(MouseEvent mev) {
-    System.out.println("Drawing line  from " + mouseX1 + "," + mouseY1
-            + " to " + mev.getX() + "," + mev.getY());
-    mouseX2 = mev.getX();
-    mouseY2 = mev.getY();
-    repaint();
-  }
-
-  public void mouseDragged(MouseEvent mev) {
-    mouseX2 = mev.getX();
-    mouseY2 = mev.getY();
-    repaint();
-  }
-
-  public void setMyColor (Color change) {
-    myColor = change;
-  }
-
-  public void setFillShape (Boolean fill) {
-    fillShape = fill;
-  }
-
-  public void setShapeToDraw (ControlPanel.MyShape shape) {
-    shapeToDraw = shape;
-  }
-
-  public void setText (String newText) {
-    text = newText;
+    graphics.dispose();
   }
 
 }

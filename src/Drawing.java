@@ -3,21 +3,21 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class Drawing {
 
   private ControlPanel m_control;
   private ContentPanel m_content;
-  private Storage m_storage;
+  public static ArrayList<Storage> m_storage = new ArrayList<>();
+  private int mouseX1 = -1;
+  private int mouseY1 = -1;
+  private int mouseX2 = -1;
+  private int mouseY2 = -1;
 
-  public Drawing(final ControlPanel control, final ContentPanel content, Storage store) {
+  public Drawing(final ControlPanel control, final ContentPanel content) {
     m_control = control;
     m_content = content;
-    m_storage = store;
-
-    //Intialise id counter
-    m_storage.ids = 0;
-
     // register for events
     m_content.setController(this.new ContentEventHandler());
   }
@@ -31,26 +31,21 @@ public class Drawing {
     @Override
     public void mousePressed(MouseEvent event) {
       // TODO handle mouse press
-      m_content.setMyColor(m_control.getCurrentColour());
-      m_content.setFillShape(m_control.getCurrentShapeFillSetting());
-      m_content.setShapeToDraw(m_control.getCurrentShape());
-      m_content.setText(m_control.getCurrentText());
-      m_content.mousePressed(event);
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent event) {
-      m_content.mouseDragged(event);
+      mouseX1 = event.getX();
+      mouseY1 = event.getY();
     }
 
     @Override
     public void mouseReleased(MouseEvent event) {
-      m_content.setMyColor(m_control.getCurrentColour());
-      m_content.setFillShape(m_control.getCurrentShapeFillSetting());
-      m_content.setShapeToDraw(m_control.getCurrentShape());
-      m_content.setText(m_control.getCurrentText());
+      mouseX2 = event.getY();
+      mouseY2 = event.getY();
+      if (m_control.getCurrentShape() == ControlPanel.MyShape.Text) {
+        m_storage.add(new Storage(mouseX1, mouseX2, mouseY1, mouseY2, m_control.getCurrentColour(), m_control.getCurrentShapeFillSetting(), m_control.getCurrentShape(), m_control.getCurrentText()));
+      } else {
+        m_storage.add(new Storage(mouseX1, mouseX2, mouseY1, mouseY2, m_control.getCurrentColour(), m_control.getCurrentShapeFillSetting(), m_control.getCurrentShape()));
+      }
       // TODO handle mouse release
-      m_content.mouseReleased(event);
+      m_content.repaint();
     }
   }
 
@@ -91,33 +86,12 @@ public class Drawing {
     contentPane.add(control, BorderLayout.PAGE_START);
     contentPane.add(content, BorderLayout.CENTER);
 
-    Storage storage = new Storage();
-
     // create the controller
-    new Drawing(control, content, storage);
+    new Drawing(control, content);
 
     // adjust the frame size to fit its contents and make it visible
     frame.pack();
     frame.setVisible(true);
-  }
-
-  /**
-   * Storage
-   * Store all draw calls in the storage class, and then query the storage class everytime re-draw is called
-   */
-  private void storeDrawing(int X1,int Y1, int X2, int Y2) {
-    m_storage.startX.add(X1);
-    m_storage.startY.add(Y1);
-    m_storage.finishX.add(X2);
-    m_storage.finishY.add(Y2);
-    m_storage.fill.add(m_control.getCurrentShapeFillSetting());
-    m_storage.shape.add(m_control.getCurrentShape());
-    m_storage.color.add(m_control.getCurrentColour());
-    m_storage.ids++;
-  }
-
-  public Storage getStorageClass() {
-    return m_storage;
   }
 
   public static void main(String[] args) {

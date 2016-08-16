@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel implements ActionListener {
   private JRadioButton m_rbText = new JRadioButton("Text");
   // Colour Pickers (Combo Box & button)
   private JComboBox<String> m_cbxColours = new JComboBox<>(new String[] {
-    "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black", "Brown", "White"
+    "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White"
   });
   private JButton m_btnColours = new JButton();
   // Fill Button
@@ -37,13 +37,10 @@ public class ControlPanel extends JPanel implements ActionListener {
   public ControlPanel() {
     super(new GridBagLayout());
     // TODO implement the control panel
-    setLayout(new FlowLayout());
-    setOpaque(false);
-    setPreferredSize(new Dimension(500, 100));
 
     final GridBagConstraints GBC = new GridBagConstraints();
     GBC.gridx = GridBagConstraints.RELATIVE;
-    GBC.fill = GridBagConstraints.NONE;
+    GBC.fill = GridBagConstraints.HORIZONTAL;
     GBC.insets = new Insets(2, 0, 2, 10);
     GBC.anchor = GridBagConstraints.LINE_START;
 
@@ -77,7 +74,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     buttonGroup.add(m_rbLine);
     m_rbLine.addActionListener(this);
     // Text
-    gbc.gridx = GridBagConstraints.REMAINDER;
+    gbc.gridx = 5;
     add(m_rbText, gbc);
     buttonGroup.add(m_rbText);
     m_rbText.addActionListener(this);
@@ -97,7 +94,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     m_btnColours.setBackground(Color.black);
     add(m_btnColours, gbc);
 
-    gbc.gridx = GridBagConstraints.REMAINDER;
+    gbc.gridx = 4;
     add(m_chbFill, gbc);
 
     // Row three
@@ -106,7 +103,8 @@ public class ControlPanel extends JPanel implements ActionListener {
     gbc.gridx = 1;
     add(new JLabel("Text: "), gbc);
 
-    gbc.gridx = GridBagConstraints.REMAINDER;
+    gbc.gridx = 3;
+    gbc.gridwidth = 2;
     add(m_tfText, gbc);
     m_tfText.addActionListener(this);
   }
@@ -134,7 +132,27 @@ public class ControlPanel extends JPanel implements ActionListener {
   }
 
   public Color getCurrentColour() {
-    return Color.BLACK; // TODO return the currently selected colour
+    // "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White"
+    switch(m_cbxColours.getSelectedIndex()) {
+      case 0:
+        return Color.BLACK;
+      case 1:
+        return Color.RED;
+      case 2:
+        return Color.ORANGE;
+      case 3:
+        return Color.YELLOW;
+      case 4:
+        return Color.GREEN;
+      case 5:
+        return Color.BLUE;
+      case 6:
+        return Color.MAGENTA;
+      case 7:
+        return Color.WHITE;
+      default:
+        return Color.BLACK;
+    }
   }
 
   public MyShape getCurrentShape() {
