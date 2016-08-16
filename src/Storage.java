@@ -66,7 +66,13 @@ public class Storage {
     public int height() {
         return m_Y2 - m_Y1;
     }
-
+    // Sets all X/Y values to -1 so they won't be drawn (useful for the temp variable in Drawing)
+    public void zero() {
+        m_X1 = -1;
+        m_Y1 = -1;
+        m_X2 = -1;
+        m_Y2 = -1;
+    }
     // Get functions
     public int getX1 () { return m_X1; }
     public int getY1 () { return m_Y1; }
