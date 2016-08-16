@@ -71,7 +71,7 @@ public class Drawing {
     applicationMenu.add(quitItem);
 
     JMenuItem aboutItem = new JMenuItem("About");
-    aboutItem.addActionListener(event -> JOptionPane.showMessageDialog(null, "15219491 - Dylan Cross", "About", JOptionPane.INFORMATION_MESSAGE));
+    aboutItem.addActionListener(event -> JOptionPane.showMessageDialog(null, "159.235 Assignment 1, Semester 2 2016\n" + "          15219491 - Dylan Cross", "About", JOptionPane.INFORMATION_MESSAGE));
     helpMenu.add(aboutItem);
 
     // set up the content pane

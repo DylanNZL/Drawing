@@ -60,47 +60,44 @@ public class ContentPanel extends JPanel {
     graphics.setColor(Color.white);
     graphics.fillRect(0,0, getWidth(), getHeight());
     for (int i = 0; i < Drawing.m_storage.size(); i++) {
-      graphics.setColor(Drawing.m_storage.get(i).myColor);
-      if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Text) {
-        graphics.drawString(Drawing.m_storage.get(i).text, Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY);
-      } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Line) {
-        graphics.drawLine(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY, Drawing.m_storage.get(i).finishX, Drawing.m_storage.get(i).finishY);
+      graphics.setColor(Drawing.m_storage.get(i).getMyColor());
+      if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Text) {
+        graphics.drawString(Drawing.m_storage.get(i).getText(), Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1());
+      } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Line) {
+        graphics.drawLine(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(), Drawing.m_storage.get(i).getX2(), Drawing.m_storage.get(i).getY2());
       } else {
-        if (Drawing.m_storage.get(i).startX > Drawing.m_storage.get(i).finishX) {
+        if (Drawing.m_storage.get(i).getX1() > Drawing.m_storage.get(i).getX2()) {
           // if the finishing X co-ordinate is smaller than the start, switch them around.
-          int temp = Drawing.m_storage.get(i).startX;
-          Drawing.m_storage.get(i).startX = Drawing.m_storage.get(i).finishX;
-          Drawing.m_storage.get(i).finishX = temp;
+          Drawing.m_storage.get(i).swapX();
+
         }
-        if (Drawing.m_storage.get(i).startY > Drawing.m_storage.get(i).finishY) {
+        if (Drawing.m_storage.get(i).getY1() > Drawing.m_storage.get(i).getY2()) {
           // if the finishing X co-ordinate is smaller than the start, switch them around.
-          int temp = Drawing.m_storage.get(i).startY;
-          Drawing.m_storage.get(i).startY = Drawing.m_storage.get(i).finishY;
-          Drawing.m_storage.get(i).finishY = temp;
+          Drawing.m_storage.get(i).swapY();
         }
-        if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Rectangle) {
-          if (Drawing.m_storage.get(i).fill) {
-            graphics.fillRect(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY);
+        if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Rectangle) {
+          if (Drawing.m_storage.get(i).getFill()) {
+            graphics.fillRect(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1());
           } else {
-            graphics.drawRect(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY);
+            graphics.drawRect(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1());
           }
-        } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Ellipse) {
-          if (Drawing.m_storage.get(i).fill) {
-            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY));
+        } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Ellipse) {
+          if (Drawing.m_storage.get(i).getFill()) {
+            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1()));
           } else {
-            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishY - Drawing.m_storage.get(i).startY));
+            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1()));
           }
-        } else if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Circle) {
-          if (Drawing.m_storage.get(i).fill) {
-            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX));
+        } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Circle) {
+          if (Drawing.m_storage.get(i).getFill()) {
+            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1()));
           } else {
-            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY,
-                    Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).finishX - Drawing.m_storage.get(i).startX));
+            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
+                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1()));
           }
         }
       }

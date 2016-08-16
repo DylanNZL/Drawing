@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.awt.*;
 
 /**
@@ -5,39 +7,60 @@ import java.awt.*;
  */
 public class Storage {
     // Starting X & Y co-ordinates
-    public int startX;
-    public int startY;
+    private int m_X1;
+    private int m_Y1;
     // Finishing X & Y co-ordinates
-    public int finishX;
-    public int finishY;
+    private int m_X2;
+    private int m_Y2;
     // Color
-    public Color myColor;
+    private Color m_MyColor;
     // Fill
-    public Boolean fill;
+    private Boolean m_Fill;
     // Shape
-    ControlPanel.MyShape shape;
+    private ControlPanel.MyShape m_Shape;
     // Text (might be blank)
-    public String text;
+    private String m_Text;
 
     public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape) {
-        startX = m_x1;
-        startY = m_y1;
-        finishX = m_x2;
-        finishY = m_y2;
-        myColor = m_color;
-        fill = m_fill;
-        shape = m_shape;
-        text = "";
+        m_X1 = m_x1;
+        m_Y1 = m_y1;
+        m_X2 = m_x2;
+        m_Y2 = m_y2;
+        m_MyColor = m_color;
+        m_Fill = m_fill;
+        m_Shape = m_shape;
+        m_Text = "";
     }
 
     public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape, String m_text) {
-        startX = m_x1;
-        startY = m_y1;
-        finishX = m_x2;
-        finishY = m_y2;
-        myColor = m_color;
-        fill = m_fill;
-        shape = m_shape;
-        text = m_text;
+        m_X1 = m_x1;
+        m_Y1 = m_y1;
+        m_X2 = m_x2;
+        m_Y2 = m_y2;
+        m_MyColor = m_color;
+        m_Fill = m_fill;
+        m_Shape = m_shape;
+        m_Text = m_text;
     }
+    // Swap the 2 X axis co-ordinates
+    public void swapX() {
+        int temp = m_X1;
+        m_X1 = m_X2;
+        m_X2 = temp;
+    }
+    // Swap the 2 Y axis co-ordinates
+    public void swapY() {
+        int temp = m_Y1;
+        m_Y1 = m_Y2;
+        m_Y2 = temp;
+    }
+    // Get functions
+    public int getX1 () { return m_X1; }
+    public int getY1 () { return m_Y1; }
+    public int getX2 () { return m_X2; }
+    public int getY2 () { return m_Y2; }
+    public Color getMyColor () { return m_MyColor; }
+    public Boolean getFill () { return m_Fill; }
+    public ControlPanel.MyShape getShape () { return m_Shape; }
+    public String getText () { return m_Text; }
 }
