@@ -95,6 +95,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     m_btnColours.setBorderPainted(false);
     m_btnColours.setBackground(Color.BLACK);
     m_btnColours.setOpaque(true);
+    m_btnColours.addActionListener(this);
     add(m_btnColours, gbc);
 
     gbc.insets = new Insets(2, 0, 2, 10);
@@ -122,7 +123,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     else if (ev.getSource() == m_rbLine) {}
     else if (ev.getSource() == m_rbText) {}
     else if (ev.getSource() == m_cbxColours) { m_btnColours.setBackground(getCurrentColour()); m_btnColours.repaint(); }
-    else if (ev.getSource() == m_btnColours) { System.out.println("Colour Button"); }
+    else if (ev.getSource() == m_btnColours) {}
     else if (ev.getSource() == m_chbFill) {}
   }
 
@@ -142,7 +143,7 @@ public class ControlPanel extends JPanel implements ActionListener {
       case 5:
         return Color.BLUE;
       case 6:
-        return Color.MAGENTA;
+        return Color.MAGENTA.darker();
       case 7:
         return Color.WHITE;
       default:
