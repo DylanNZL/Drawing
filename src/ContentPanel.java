@@ -1,10 +1,6 @@
-import com.sun.org.apache.xpath.internal.operations.Variable;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
@@ -15,15 +11,6 @@ import java.util.ArrayList;
 public class ContentPanel extends JPanel {
 
   private static final long serialVersionUID = 1L;
-
-  // Mouse co-ordinates (*1 = start, *2 = end)
-
-  // Attributes
-  private Color myColor = Color.red;
-  private Boolean fillShape = false;
-  private ControlPanel.MyShape shapeToDraw = ControlPanel.MyShape.Rectangle;
-  private String text = "";
-
 
   /**
    * The callback interface for controllers of this class.

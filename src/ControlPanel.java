@@ -178,7 +178,7 @@ public class ControlPanel extends JPanel implements ActionListener {
   }
 
   public boolean getCurrentShapeFillSetting() {
-    // Teturns the currently selected fill state for shapes
+    // Returns the currently selected fill state for shapes
     return m_chbFill.isSelected();
   }
 

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b34bc77a-16a9-43f4-a700-b1f34594e7b5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/MenuBars.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Drawing.java" afterPath="$PROJECT_DIR$/src/Drawing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage.java" afterPath="$PROJECT_DIR$/src/Storage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContentPanel.java" afterPath="$PROJECT_DIR$/src/ContentPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ControlPanel.java" afterPath="$PROJECT_DIR$/src/ControlPanel.java" />
     </list>
     <ignored path="Drawing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControlPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ControlPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ControlPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2640">
-              <caret line="176" column="22" selection-start-line="176" selection-start-column="22" selection-end-line="176" selection-end-column="22" />
+            <state relative-caret-position="481">
+              <caret line="128" column="42" selection-start-line="128" selection-start-column="42" selection-end-line="128" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContentPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContentPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ContentPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="101" column="9" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
+            <state relative-caret-position="-719">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,10 +104,10 @@
         <option value="$PROJECT_DIR$/src/MenuBar.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/MenuBars.java" />
-        <option value="$PROJECT_DIR$/src/ControlPanel.java" />
-        <option value="$PROJECT_DIR$/src/ContentPanel.java" />
         <option value="$PROJECT_DIR$/src/Drawing.java" />
         <option value="$PROJECT_DIR$/src/Storage.java" />
+        <option value="$PROJECT_DIR$/src/ContentPanel.java" />
+        <option value="$PROJECT_DIR$/src/ControlPanel.java" />
       </list>
     </option>
   </component>
@@ -696,7 +695,7 @@
       <workItem from="1471214070115" duration="1177000" />
       <workItem from="1471222210573" duration="9364000" />
       <workItem from="1471237035196" duration="6019000" />
-      <workItem from="1471298777843" duration="10358000" />
+      <workItem from="1471298777843" duration="10466000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore file">
       <created>1471169551650</created>
@@ -747,11 +746,18 @@
       <option name="project" value="LOCAL" />
       <updated>1471311624931</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Removed menu class (directly implemented it into Drawing.java) and tidied up some imports">
+      <created>1471311785726</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1471311785726</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48564000" />
+    <option name="totallyTimeSpent" value="48672000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="976" extended-state="6" />
@@ -804,7 +810,8 @@
     <MESSAGE value="Almost working :ok_hand:&#10;" />
     <MESSAGE value="Minimum Viable Product :sunglasses:" />
     <MESSAGE value="Added get and swap functions to the Storage class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added get and swap functions to the Storage class" />
+    <MESSAGE value="Removed menu class (directly implemented it into Drawing.java) and tidied up some imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed menu class (directly implemented it into Drawing.java) and tidied up some imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1068,21 +1075,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ControlPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="176" column="22" selection-start-line="176" selection-start-column="22" selection-end-line="176" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MenuBars.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
           <caret line="49" column="27" selection-start-line="48" selection-start-column="12" selection-end-line="49" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContentPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-719">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1094,10 +1101,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContentPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/ControlPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" column="9" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
+        <state relative-caret-position="481">
+          <caret line="128" column="42" selection-start-line="128" selection-start-column="42" selection-end-line="128" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
