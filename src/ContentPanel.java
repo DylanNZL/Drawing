@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
@@ -19,6 +20,11 @@ public class ContentPanel extends JPanel {
 
   }
 
+  public interface ContentViewMotionListener extends MouseMotionListener {
+
+  }
+
+
   public ContentPanel() {
     super(null); // no layout manager
     setPreferredSize(new Dimension(500, 500));
@@ -31,9 +37,10 @@ public class ContentPanel extends JPanel {
    *
    * @param controller The controller.
    */
-  public void setController(final ContentViewListener controller) {
+  public void setController(final ContentViewListener controller, final ContentViewMotionListener cont) {
     // update the event listeners
     addMouseListener(controller);
+    addMouseMotionListener(cont);
   }
 
   @Override
@@ -43,53 +50,49 @@ public class ContentPanel extends JPanel {
     graphics.addRenderingHints(new RenderingHints(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON ));
-    // TODO draw
     graphics.setColor(Color.white);
     graphics.fillRect(0,0, getWidth(), getHeight());
     for (int i = 0; i < Drawing.m_storage.size(); i++) {
-      graphics.setColor(Drawing.m_storage.get(i).getMyColor());
-      if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Text) {
-        graphics.drawString(Drawing.m_storage.get(i).getText(), Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1());
-      } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Line) {
-        graphics.drawLine(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(), Drawing.m_storage.get(i).getX2(), Drawing.m_storage.get(i).getY2());
-      } else {
-        if (Drawing.m_storage.get(i).getX1() > Drawing.m_storage.get(i).getX2()) {
-          // if the finishing X co-ordinate is smaller than the start, switch them around.
-          Drawing.m_storage.get(i).swapX();
-
+      drawShape(Drawing.m_storage.get(i), graphics);
+    }
+    drawShape(Drawing.m_Temp, graphics);
+    graphics.dispose();
+  }
+  // Moved method out of paint component to make it possible to have a temp (but i couldn't get mouseDragged to work)
+  private void drawShape(Storage draw, Graphics2D graphics) {
+    graphics.setColor(draw.getMyColor());
+    if (draw.getShape() == ControlPanel.MyShape.Text) {
+      graphics.drawString(draw.getText(), draw.getX1(), draw.getY1());
+    } else if (draw.getShape() == ControlPanel.MyShape.Line) {
+      graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
+    } else {
+      if (draw.getX1() > draw.getX2()) {
+        // if the finishing X co-ordinate is smaller than the start, switch them around.
+        draw.swapX();
+      }
+      if (draw.getY1() > draw.getY2()) {
+        // if the finishing X co-ordinate is smaller than the start, switch them around.
+        draw.swapY();
+      }
+      if (draw.getShape() == ControlPanel.MyShape.Rectangle) {
+        if (draw.getFill()) {
+          graphics.fillRect(draw.getX1(), draw.getY1(), draw.length(), draw.height());
+        } else {
+          graphics.drawRect(draw.getX1(), draw.getY1(), draw.length(), draw.height());
         }
-        if (Drawing.m_storage.get(i).getY1() > Drawing.m_storage.get(i).getY2()) {
-          // if the finishing X co-ordinate is smaller than the start, switch them around.
-          Drawing.m_storage.get(i).swapY();
+      } else if (draw.getShape() == ControlPanel.MyShape.Ellipse) {
+        if (draw.getFill()) {
+          graphics.fill(new Ellipse2D.Double(draw.getX1(), draw.getY1(), draw.length(), draw.height()));
+        } else {
+          graphics.draw(new Ellipse2D.Double(draw.getX1(), draw.getY1(), draw.length(), draw.height()));
         }
-        if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Rectangle) {
-          if (Drawing.m_storage.get(i).getFill()) {
-            graphics.fillRect(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1());
-          } else {
-            graphics.drawRect(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1());
-          }
-        } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Ellipse) {
-          if (Drawing.m_storage.get(i).getFill()) {
-            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1()));
-          } else {
-            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY2() - Drawing.m_storage.get(i).getY1()));
-          }
-        } else if (Drawing.m_storage.get(i).getShape() == ControlPanel.MyShape.Circle) {
-          if (Drawing.m_storage.get(i).getFill()) {
-            graphics.fill(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1()));
-          } else {
-            graphics.draw(new Ellipse2D.Double(Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getY1(),
-                    Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1(), Drawing.m_storage.get(i).getX2() - Drawing.m_storage.get(i).getX1()));
-          }
+      } else if (draw.getShape() == ControlPanel.MyShape.Circle) {
+        if (draw.getFill()) {
+          graphics.fill(new Ellipse2D.Double(draw.getX1(), draw.getY1(), draw.length(), draw.length()));
+        } else {
+          graphics.draw(new Ellipse2D.Double(draw.getX1(), draw.getY1(), draw.length(), draw.length()));
         }
       }
     }
-    graphics.dispose();
   }
-
 }
