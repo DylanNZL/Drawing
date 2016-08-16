@@ -5,10 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Drawing/Drawing$ContentEventHandler.class" afterPath="$PROJECT_DIR$/out/production/Drawing/Drawing$ContentEventHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Drawing/Drawing.class" afterPath="$PROJECT_DIR$/out/production/Drawing/Drawing.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContentPanel.java" afterPath="$PROJECT_DIR$/src/ContentPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ControlPanel.java" afterPath="$PROJECT_DIR$/src/ControlPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Drawing.java" afterPath="$PROJECT_DIR$/src/Drawing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Storage.java" afterPath="$PROJECT_DIR$/src/Storage.java" />
     </list>
     <ignored path="Drawing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -700,7 +696,7 @@
       <workItem from="1471222210573" duration="9364000" />
       <workItem from="1471237035196" duration="6019000" />
       <workItem from="1471298777843" duration="14370000" />
-      <workItem from="1471331004798" duration="5276000" />
+      <workItem from="1471331004798" duration="5530000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore file">
       <created>1471169551650</created>
@@ -772,11 +768,39 @@
       <option name="project" value="LOCAL" />
       <updated>1471335087232</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Control panel purple is now magenta.darker(), it's more purpley than just magenta">
+      <created>1471338561338</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1471338561338</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Extracted the function that actually draws the shapes into a new function to allow better code re-use. Implemented a mouse motion listener to get the location of the mouse when it is dragging.">
+      <created>1471338633113</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1471338633113</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Implemented a shadow drawing of where the shape will be while the mouse is held down.">
+      <created>1471338651524</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1471338651524</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added a function to the class to zero the X/Y co-ords so that the temp variable can be zeroed easier">
+      <created>1471338700078</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1471338700078</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57852000" />
+    <option name="totallyTimeSpent" value="58106000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -868,7 +892,11 @@
     <MESSAGE value="Removed menu class (directly implemented it into Drawing.java) and tidied up some imports" />
     <MESSAGE value="Removed excess imports" />
     <MESSAGE value="Added setter functions + functions to return X2-X1 and Y1-Y2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added setter functions + functions to return X2-X1 and Y1-Y2" />
+    <MESSAGE value="Control panel purple is now magenta.darker(), it's more purpley than just magenta" />
+    <MESSAGE value="Extracted the function that actually draws the shapes into a new function to allow better code re-use. Implemented a mouse motion listener to get the location of the mouse when it is dragging." />
+    <MESSAGE value="Implemented a shadow drawing of where the shape will be while the mouse is held down." />
+    <MESSAGE value="Added a function to the class to zero the X/Y co-ords so that the temp variable can be zeroed easier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a function to the class to zero the X/Y co-ords so that the temp variable can be zeroed easier" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
