@@ -12,10 +12,10 @@ public class Drawing {
   private int mouseY1 = -1;
   private int mouseX2 = -1;
   private int mouseY2 = -1;
-  // Publicly accessable storage list that is used in content and drawing.
+  // Storage list that is used in content and drawing.
   public static ArrayList<Storage> m_storage = new ArrayList<>();
 
-  public Drawing(final ControlPanel control, final ContentPanel content) {
+  private Drawing(final ControlPanel control, final ContentPanel content) {
     m_control = control;
     m_content = content;
     // register for events

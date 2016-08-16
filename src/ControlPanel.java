@@ -36,8 +36,6 @@ public class ControlPanel extends JPanel implements ActionListener {
 
   public ControlPanel() {
     super(new GridBagLayout());
-    // TODO implement the control panel
-
     final GridBagConstraints GBC = new GridBagConstraints();
     GBC.gridx = GridBagConstraints.RELATIVE;
     GBC.fill = GridBagConstraints.HORIZONTAL;
@@ -50,6 +48,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
     gbc.gridy = 0;
     gbc.gridx = 0;
+    gbc.weightx = 0;
     add(new JLabel("Select a Shape: "), gbc);
     gbc.gridx = 1;
     ButtonGroup buttonGroup = new ButtonGroup();
@@ -88,12 +87,17 @@ public class ControlPanel extends JPanel implements ActionListener {
     gbc.gridx = 1;
     gbc.gridwidth = 2;
     add(m_cbxColours, gbc);
+    m_cbxColours.addActionListener(this);
 
     gbc.gridx = 3;
     gbc.gridwidth = 1;
-    m_btnColours.setBackground(Color.black);
+    gbc.insets = new Insets(2, 2, 2, 2);
+    m_btnColours.setBorderPainted(false);
+    m_btnColours.setBackground(Color.BLACK);
+    m_btnColours.setOpaque(true);
     add(m_btnColours, gbc);
 
+    gbc.insets = new Insets(2, 0, 2, 10);
     gbc.gridx = 4;
     add(m_chbFill, gbc);
 
@@ -103,6 +107,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     gbc.gridx = 1;
     add(new JLabel("Text: "), gbc);
 
+    gbc.weightx = 1;
     gbc.gridx = 3;
     gbc.gridwidth = 2;
     add(m_tfText, gbc);
@@ -111,25 +116,14 @@ public class ControlPanel extends JPanel implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent ev) {
-    if (ev.getSource() == m_rbRectangle) {
-      System.out.println("Rectangle");
-    } else if (ev.getSource() == m_rbCircle) {
-      System.out.println("Circle");
-    } else if (ev.getSource() == m_rbEllipse) {
-      System.out.println("Ellipse");
-    } else if (ev.getSource() == m_rbLine) {
-      System.out.println("Line");
-    } else if (ev.getSource() == m_rbText) {
-      System.out.println("Text");
-    } else if (ev.getSource() == m_cbxColours) {
-      System.out.println("Colour changed to:");
-      System.out.println(m_cbxColours.getSelectedItem());
-      m_btnColours.setBackground(getCurrentColour());
-    } else if (ev.getSource() == m_btnColours) {
-      System.out.println("Colour Button");
-    } else if (ev.getSource() == m_chbFill) {
-      System.out.println("Fill Button");
-    }
+    if (ev.getSource() == m_rbRectangle) {}
+    else if (ev.getSource() == m_rbCircle) {}
+    else if (ev.getSource() == m_rbEllipse) {}
+    else if (ev.getSource() == m_rbLine) {}
+    else if (ev.getSource() == m_rbText) {}
+    else if (ev.getSource() == m_cbxColours) { m_btnColours.setBackground(getCurrentColour()); m_btnColours.repaint(); }
+    else if (ev.getSource() == m_btnColours) { System.out.println("Colour Button"); }
+    else if (ev.getSource() == m_chbFill) {}
   }
 
   public Color getCurrentColour() {
