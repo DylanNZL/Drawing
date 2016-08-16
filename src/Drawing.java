@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -9,11 +10,12 @@ public class Drawing {
 
   private ControlPanel m_control;
   private ContentPanel m_content;
-  public static ArrayList<Storage> m_storage = new ArrayList<>();
   private int mouseX1 = -1;
   private int mouseY1 = -1;
   private int mouseX2 = -1;
   private int mouseY2 = -1;
+  // Publicly accessable storage list that is used in content and drawing.
+  public static ArrayList<Storage> m_storage = new ArrayList<>();
 
   public Drawing(final ControlPanel control, final ContentPanel content) {
     m_control = control;
@@ -30,7 +32,6 @@ public class Drawing {
 
     @Override
     public void mousePressed(MouseEvent event) {
-      // TODO handle mouse press
       mouseX1 = event.getX();
       mouseY1 = event.getY();
     }
@@ -44,7 +45,6 @@ public class Drawing {
       } else {
         m_storage.add(new Storage(mouseX1, mouseX2, mouseY1, mouseY2, m_control.getCurrentColour(), m_control.getCurrentShapeFillSetting(), m_control.getCurrentShape()));
       }
-      // TODO handle mouse release
       m_content.repaint();
     }
   }
@@ -57,7 +57,6 @@ public class Drawing {
     final JFrame frame = new JFrame("Drawing");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    // TODO add the menu
     JMenuBar menuBar = new JMenuBar();
     frame.setJMenuBar(menuBar);
 
@@ -68,11 +67,11 @@ public class Drawing {
     menuBar.add(helpMenu);
 
     JMenuItem quitItem = new JMenuItem("Quit");
-    //quitItem.addActionListener(this);
+    quitItem.addActionListener(event -> System.exit(123));
     applicationMenu.add(quitItem);
 
     JMenuItem aboutItem = new JMenuItem("About");
-    //aboutItem.addActionListener(this);
+    aboutItem.addActionListener(event -> JOptionPane.showMessageDialog(null, "15219491 - Dylan Cross", "About", JOptionPane.INFORMATION_MESSAGE));
     helpMenu.add(aboutItem);
 
     // set up the content pane

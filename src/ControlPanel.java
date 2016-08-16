@@ -124,6 +124,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     } else if (ev.getSource() == m_cbxColours) {
       System.out.println("Colour changed to:");
       System.out.println(m_cbxColours.getSelectedItem());
+      m_btnColours.setBackground(getCurrentColour());
     } else if (ev.getSource() == m_btnColours) {
       System.out.println("Colour Button");
     } else if (ev.getSource() == m_chbFill) {

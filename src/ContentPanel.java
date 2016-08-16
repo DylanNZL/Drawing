@@ -60,8 +60,6 @@ public class ContentPanel extends JPanel {
     graphics.setColor(Color.white);
     graphics.fillRect(0,0, getWidth(), getHeight());
     for (int i = 0; i < Drawing.m_storage.size(); i++) {
-      System.out.println(Drawing.m_storage.get(i).startX + " " + Drawing.m_storage.get(i).startY + " " + Drawing.m_storage.get(i).finishY
-              + " " + Drawing.m_storage.get(i).finishY + " " + Drawing.m_storage.get(i).shape + " " + Drawing.m_storage.get(i).fill);
       graphics.setColor(Drawing.m_storage.get(i).myColor);
       if (Drawing.m_storage.get(i).shape == ControlPanel.MyShape.Text) {
         graphics.drawString(Drawing.m_storage.get(i).text, Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY);
@@ -69,13 +67,13 @@ public class ContentPanel extends JPanel {
         graphics.drawLine(Drawing.m_storage.get(i).startX, Drawing.m_storage.get(i).startY, Drawing.m_storage.get(i).finishX, Drawing.m_storage.get(i).finishY);
       } else {
         if (Drawing.m_storage.get(i).startX > Drawing.m_storage.get(i).finishX) {
-          // if the finishing X co-ordinate is bigger than the start, switch them around.
+          // if the finishing X co-ordinate is smaller than the start, switch them around.
           int temp = Drawing.m_storage.get(i).startX;
           Drawing.m_storage.get(i).startX = Drawing.m_storage.get(i).finishX;
           Drawing.m_storage.get(i).finishX = temp;
         }
         if (Drawing.m_storage.get(i).startY > Drawing.m_storage.get(i).finishY) {
-          // if the finishing X co-ordinate is bigger than the start, switch them around.
+          // if the finishing X co-ordinate is smaller than the start, switch them around.
           int temp = Drawing.m_storage.get(i).startY;
           Drawing.m_storage.get(i).startY = Drawing.m_storage.get(i).finishY;
           Drawing.m_storage.get(i).finishY = temp;
