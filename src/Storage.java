@@ -26,8 +26,8 @@ public class Storage {
     public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape) {
         // Constructor for non-text shapes
         m_X1 = m_x1;
-        m_Y1 = m_y1;
         m_X2 = m_x2;
+        m_Y1 = m_y1;
         m_Y2 = m_y2;
         m_MyColor = m_color;
         m_Fill = m_fill;
@@ -38,8 +38,8 @@ public class Storage {
     public Storage(int m_x1, int m_x2, int m_y1, int m_y2, Color m_color, Boolean m_fill, ControlPanel.MyShape m_shape, String m_text) {
         // Constructor for a text shape
         m_X1 = m_x1;
-        m_Y1 = m_y1;
         m_X2 = m_x2;
+        m_Y1 = m_y1;
         m_Y2 = m_y2;
         m_MyColor = m_color;
         m_Fill = m_fill;

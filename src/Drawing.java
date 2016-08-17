@@ -39,7 +39,7 @@ public class Drawing {
     @Override
     public void mouseReleased(MouseEvent event) {
       m_Temp.zero();
-      mouseX2 = event.getY();
+      mouseX2 = event.getX();
       mouseY2 = event.getY();
       if (m_control.getCurrentShape() == ControlPanel.MyShape.Text) {
         m_storage.add(new Storage(mouseX1, mouseX2, mouseY1, mouseY2, m_control.getCurrentColour(), m_control.getCurrentShapeFillSetting(), m_control.getCurrentShape(), m_control.getCurrentText()));
@@ -51,16 +51,19 @@ public class Drawing {
 
     @Override
     public void mouseDragged(MouseEvent mev) {
-      mouseX2 = mev.getX();
-      mouseY2 = mev.getY();
-      m_Temp.setX1(mouseX1);
-      m_Temp.setY1(mouseY1);
-      m_Temp.setX2(mouseX2);
-      m_Temp.setY2(mouseY2);
-      m_Temp.setFill(m_control.getCurrentShapeFillSetting());
-      m_Temp.setShape(m_control.getCurrentShape());
-      m_Temp.setMyColor(Color.CYAN.darker());
-      m_content.repaint();
+
+      if (m_control.getCurrentShape() != ControlPanel.MyShape.Text) {
+        mouseX2 = mev.getX();
+        mouseY2 = mev.getY();
+        m_Temp.setX1(mouseX1);
+        m_Temp.setY1(mouseY1);
+        m_Temp.setX2(mouseX2);
+        m_Temp.setY2(mouseY2);
+        m_Temp.setFill(m_control.getCurrentShapeFillSetting());
+        m_Temp.setShape(m_control.getCurrentShape());
+        m_Temp.setMyColor(Color.CYAN.darker());
+        m_content.repaint();
+      }
     }
   }
 
@@ -86,7 +89,7 @@ public class Drawing {
     applicationMenu.add(quitItem);
 
     JMenuItem aboutItem = new JMenuItem("About");
-    aboutItem.addActionListener(event -> JOptionPane.showMessageDialog(null, "159.235 Assignment 1, Semester 2 2016\n" + "          15219491 - Dylan Cross", "About", JOptionPane.INFORMATION_MESSAGE));
+    aboutItem.addActionListener(event -> JOptionPane.showMessageDialog(null, "159.235 Assignment 1, Semester 2 2016\n          15219491 - Dylan Cross", "About", JOptionPane.INFORMATION_MESSAGE));
     helpMenu.add(aboutItem);
 
     // set up the content pane

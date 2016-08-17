@@ -104,13 +104,12 @@ public class ControlPanel extends JPanel implements ActionListener {
 
     // Row three
     gbc = (GridBagConstraints) GBC.clone();
-    gbc.gridy = 2;
-    gbc.gridx = 1;
+    gbc.gridy =2;
+    gbc.gridx = 0;
     add(new JLabel("Text: "), gbc);
 
-    gbc.weightx = 1;
-    gbc.gridx = 3;
-    gbc.gridwidth = 2;
+    gbc.gridx = 1;
+    gbc.gridwidth = 5;
     add(m_tfText, gbc);
     m_tfText.addActionListener(this);
   }
