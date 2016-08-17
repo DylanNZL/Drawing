@@ -40,8 +40,8 @@
       <file leaf-file-name="ControlPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assignment1/ControlPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="149" column="13" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+            <state relative-caret-position="1635">
+              <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,8 +101,8 @@
         <option value="$PROJECT_DIR$/src/Drawing.java" />
         <option value="$PROJECT_DIR$/src/Assignment1/Drawing.java" />
         <option value="$PROJECT_DIR$/src/Assignment1/Storage.java" />
-        <option value="$PROJECT_DIR$/src/Assignment1/ControlPanel.java" />
         <option value="$PROJECT_DIR$/src/Assignment1/ContentPanel.java" />
+        <option value="$PROJECT_DIR$/src/Assignment1/ControlPanel.java" />
       </list>
     </option>
   </component>
@@ -700,7 +700,7 @@
       <workItem from="1471237035196" duration="6019000" />
       <workItem from="1471298777843" duration="14370000" />
       <workItem from="1471331004798" duration="5530000" />
-      <workItem from="1471341801374" duration="14945000" />
+      <workItem from="1471341801374" duration="15090000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore file">
       <created>1471169551650</created>
@@ -821,11 +821,18 @@
       <option name="project" value="LOCAL" />
       <updated>1471399626236</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added a Brown colour">
+      <created>1471467810804</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1471467810804</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73051000" />
+    <option name="totallyTimeSpent" value="73196000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -925,7 +932,8 @@
     <MESSAGE value="Done" />
     <MESSAGE value="removed random extra semi-colon" />
     <MESSAGE value="Added a package to the program, now to choose between Public functions and package-private" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a package to the program, now to choose between Public functions and package-private" />
+    <MESSAGE value="Added a Brown colour" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a Brown colour" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1288,8 +1296,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assignment1/ControlPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="149" column="13" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
+        <state relative-caret-position="1635">
+          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

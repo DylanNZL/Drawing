@@ -58,27 +58,22 @@ public class ControlPanel extends JPanel implements ActionListener {
     m_rbRectangle.setSelected(true);
     add(m_rbRectangle, gbc);
     buttonGroup.add(m_rbRectangle);
-    m_rbRectangle.addActionListener(this);
     // Circle
     gbc.gridx = 2;
     add(m_rbCircle, gbc);
     buttonGroup.add(m_rbCircle);
-    m_rbCircle.addActionListener(this);
     // Ellipse
     gbc.gridx = 3;
     add(m_rbEllipse, gbc);
     buttonGroup.add(m_rbEllipse);
-    m_rbEllipse.addActionListener(this);
     // Line
     gbc.gridx = 4;
     add(m_rbLine, gbc);
     buttonGroup.add(m_rbLine);
-    m_rbLine.addActionListener(this);
     // Text
     gbc.gridx = 5;
     add(m_rbText, gbc);
     buttonGroup.add(m_rbText);
-    m_rbText.addActionListener(this);
 
     // row 2
     gbc = (GridBagConstraints) GBC.clone();
@@ -113,19 +108,11 @@ public class ControlPanel extends JPanel implements ActionListener {
     gbc.gridx = 1;
     gbc.gridwidth = 5;
     add(m_tfText, gbc);
-    m_tfText.addActionListener(this);
   }
 
   @Override
   public void actionPerformed(ActionEvent ev) {
-    if (ev.getSource() == m_rbRectangle) {}
-    else if (ev.getSource() == m_rbCircle) {}
-    else if (ev.getSource() == m_rbEllipse) {}
-    else if (ev.getSource() == m_rbLine) {}
-    else if (ev.getSource() == m_rbText) {}
-    else if (ev.getSource() == m_cbxColours) { m_btnColours.setBackground(getCurrentColour()); m_btnColours.repaint(); }
-    else if (ev.getSource() == m_btnColours) {}
-    else if (ev.getSource() == m_chbFill) {}
+    if (ev.getSource() == m_cbxColours) { m_btnColours.setBackground(getCurrentColour()); m_btnColours.repaint(); }
   }
 
   public Color getCurrentColour() {
