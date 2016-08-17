@@ -63,7 +63,7 @@ public class ContentPanel extends JPanel {
     if (draw.getShape() == ControlPanel.MyShape.Text) {
       graphics.drawString(draw.getText(), draw.getX1(), draw.getY1());
     } else if (draw.getShape() == ControlPanel.MyShape.Line) {
-      graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());;
+      graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
     } else {
       if (draw.getX1() > draw.getX2()) {
         // if the finishing X co-ordinate is smaller than the start, switch them around.
