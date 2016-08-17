@@ -20,7 +20,7 @@ public class ControlPanel extends JPanel implements ActionListener {
   private JRadioButton m_rbText = new JRadioButton("Text");
   // Colour Pickers (Combo Box & button)
   private JComboBox<String> m_cbxColours = new JComboBox<>(new String[] {
-    "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White"
+    "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", "Brown"
   });
   private JButton m_btnColours = new JButton();
   // Fill Button
@@ -129,7 +129,7 @@ public class ControlPanel extends JPanel implements ActionListener {
   }
 
   public Color getCurrentColour() {
-    // "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White"
+    // "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", "Brown"
     switch(m_cbxColours.getSelectedIndex()) {
       case 0:
         return Color.BLACK;
@@ -147,6 +147,8 @@ public class ControlPanel extends JPanel implements ActionListener {
         return Color.MAGENTA.darker();
       case 7:
         return Color.WHITE;
+      case 8:
+        return Color.ORANGE.darker();
       default:
         return Color.BLACK;
     }
