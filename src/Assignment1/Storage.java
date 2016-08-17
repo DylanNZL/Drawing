@@ -1,3 +1,5 @@
+package Assignment1;
+
 import java.awt.*;
 
 /**
@@ -66,7 +68,7 @@ public class Storage {
     public int height() {
         return m_Y2 - m_Y1;
     }
-    // Sets all X/Y values to -1 so they won't be drawn (useful for the temp variable in Drawing)
+    // Sets all X/Y values to -1 so they won't be drawn (useful for the temp variable in Assignment1.Drawing)
     public void zero() {
         m_X1 = -1;
         m_Y1 = -1;

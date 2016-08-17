@@ -1,8 +1,11 @@
+package Assignment1;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
 
 public class Drawing {
 
@@ -12,7 +15,7 @@ public class Drawing {
   private int mouseY1 = -1;
   private int mouseX2 = -1;
   private int mouseY2 = -1;
-  // Storage list that is used in content and drawing.
+  // Assignment1.Storage list that is used in content and drawing.
   public static ArrayList<Storage> m_storage = new ArrayList<>();
   public static Storage m_Temp = new Storage();
 
@@ -24,7 +27,7 @@ public class Drawing {
   }
 
   /**
-   * A ContentEventHandler handles events from the ContentPanel view.
+   * A ContentEventHandler handles events from the Assignment1.ContentPanel view.
    * Changed from MouseInputAdaptor to MouseAdaptor as it handles more events (including mouseDragged)
    */
   private class ContentEventHandler extends MouseAdapter implements
@@ -72,7 +75,7 @@ public class Drawing {
    */
   private static void createGui() {
     // set-up the frame
-    final JFrame frame = new JFrame("Drawing");
+    final JFrame frame = new JFrame("Assignment1.Drawing");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     JMenuBar menuBar = new JMenuBar();

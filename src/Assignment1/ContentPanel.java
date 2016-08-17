@@ -1,3 +1,5 @@
+package Assignment1;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
@@ -5,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 
 /**
- * The ContentPanel implements the canvas and forwards any user events to the
+ * The Assignment1.ContentPanel implements the canvas and forwards any user events to the
  * registered controller.
  */
 public class ContentPanel extends JPanel {
