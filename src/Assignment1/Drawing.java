@@ -6,7 +6,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-
+/**
+ *    Dylan Cross  15219491
+ *    159.235 Assignment One
+ *    Program that allows a user to make rough drawings.
+ *    Used JDK 1.8.0_40 and IntelliJ (latest)
+ */
 public class Drawing {
 
   private ControlPanel m_control;
