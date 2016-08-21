@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * The control panel implements a pull mechanism to retrieve the current user
  * settings.
  */
-public class ControlPanel extends JPanel implements ActionListener {
+class ControlPanel extends JPanel implements ActionListener {
 
   private static final long serialVersionUID = 1L;
   // Radio buttons to select shape
@@ -22,6 +22,7 @@ public class ControlPanel extends JPanel implements ActionListener {
   private JComboBox<String> m_cbxColours = new JComboBox<>(new String[] {
     "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", "Brown"
   });
+  // Colour button (shows currently selected colour)
   private JButton m_btnColours = new JButton();
   // Fill Button
   private JCheckBox m_chbFill = new JCheckBox("Fill Shapes?");
@@ -32,11 +33,11 @@ public class ControlPanel extends JPanel implements ActionListener {
   /**
    * The geometric shapes supported by this control panel.
    */
-  public enum MyShape {
+  enum MyShape {
     Rectangle, Circle, Ellipse, Line, Text, Unknown
   }
 
-  public ControlPanel() {
+  ControlPanel() {
     super(new GridBagLayout());
     final GridBagConstraints GBC = new GridBagConstraints();
     GBC.gridx = GridBagConstraints.RELATIVE;
@@ -77,34 +78,42 @@ public class ControlPanel extends JPanel implements ActionListener {
 
     // row 2
     gbc = (GridBagConstraints) GBC.clone();
+
+    // Colour Picker label
     gbc.gridy = 1;
     gbc.gridx = 0;
     add(new JLabel("Choose Colour"), gbc);
 
+    // Colour Picker
     gbc.gridx = 1;
     gbc.gridwidth = 2;
     add(m_cbxColours, gbc);
     m_cbxColours.addActionListener(this);
 
+    // Colour Display
     gbc.gridx = 3;
     gbc.gridwidth = 1;
     gbc.insets = new Insets(2, 2, 2, 2);
     m_btnColours.setBorderPainted(false);
     m_btnColours.setBackground(Color.BLACK);
     m_btnColours.setOpaque(true);
-    m_btnColours.addActionListener(this);
     add(m_btnColours, gbc);
 
+    // Fill Button
     gbc.insets = new Insets(2, 0, 2, 10);
     gbc.gridx = 4;
+    gbc.gridwidth = 2;
     add(m_chbFill, gbc);
 
     // Row three
     gbc = (GridBagConstraints) GBC.clone();
-    gbc.gridy =2;
+
+    // Text Label
+    gbc.gridy = 2;
     gbc.gridx = 0;
     add(new JLabel("Text: "), gbc);
 
+    // Text Box
     gbc.gridx = 1;
     gbc.gridwidth = 5;
     add(m_tfText, gbc);
@@ -112,11 +121,12 @@ public class ControlPanel extends JPanel implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent ev) {
+    // Only one event listener. It changes the colour display to what the combo box option was changed to
     if (ev.getSource() == m_cbxColours) { m_btnColours.setBackground(getCurrentColour()); m_btnColours.repaint(); }
   }
 
-  public Color getCurrentColour() {
-    // "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", "Brown"
+  Color getCurrentColour() {
+    // Returns the currently selected colour
     switch(m_cbxColours.getSelectedIndex()) {
       case 0:
         return Color.BLACK;
@@ -141,7 +151,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     }
   }
 
-  public MyShape getCurrentShape() {
+  MyShape getCurrentShape() {
     // Returns the currently selected shape
     if (m_rbRectangle.isSelected()) {
       return MyShape.Rectangle;
@@ -157,14 +167,13 @@ public class ControlPanel extends JPanel implements ActionListener {
     return MyShape.Unknown;
   }
 
-  public String getCurrentText() {
+  String getCurrentText() {
     // Returns the current text in the text box
     return m_tfText.getText();
   }
 
-  public boolean getCurrentShapeFillSetting() {
+  boolean getCurrentShapeFillSetting() {
     // Returns the currently selected fill state for shapes
     return m_chbFill.isSelected();
   }
-
 }

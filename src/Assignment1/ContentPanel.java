@@ -10,23 +10,22 @@ import java.awt.geom.Ellipse2D;
  * The Assignment1.ContentPanel implements the canvas and forwards any user events to the
  * registered controller.
  */
-public class ContentPanel extends JPanel {
+class ContentPanel extends JPanel {
 
   private static final long serialVersionUID = 1L;
 
   /**
    * The callback interface for controllers of this class.
    */
-  public interface ContentViewListener extends MouseListener {
+  interface ContentViewListener extends MouseListener {
 
   }
 
-  public interface ContentViewMotionListener extends MouseMotionListener {
+  interface ContentViewMotionListener extends MouseMotionListener {
 
   }
 
-
-  public ContentPanel() {
+  ContentPanel() {
     super(null); // no layout manager
     setPreferredSize(new Dimension(500, 500));
     setOpaque(true);
@@ -38,7 +37,7 @@ public class ContentPanel extends JPanel {
    *
    * @param controller The controller.
    */
-  public void setController(final ContentViewListener controller, final ContentViewMotionListener cont) {
+  void setController(final ContentViewListener controller, final ContentViewMotionListener cont) {
     // update the event listeners
     addMouseListener(controller);
     addMouseMotionListener(cont);
@@ -59,7 +58,8 @@ public class ContentPanel extends JPanel {
     drawShape(Drawing.m_Temp, graphics);
     graphics.dispose();
   }
-  // Moved method out of paint component to make it possible to have a temp (but i couldn't get mouseDragged to work)
+
+  // This function decides what shape was sent to it and then draws it on the JPanel
   private void drawShape(Storage draw, Graphics2D graphics) {
     graphics.setColor(draw.getMyColor());
     if (draw.getShape() == ControlPanel.MyShape.Text) {

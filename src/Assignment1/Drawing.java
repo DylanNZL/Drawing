@@ -15,9 +15,9 @@ public class Drawing {
   private int mouseY1 = -1;
   private int mouseX2 = -1;
   private int mouseY2 = -1;
-  // Assignment1.Storage list that is used in content and drawing.
-  public static ArrayList<Storage> m_storage = new ArrayList<>();
-  public static Storage m_Temp = new Storage();
+
+  static ArrayList<Storage> m_storage = new ArrayList<>();
+  static Storage m_Temp = new Storage();
 
   private Drawing(final ControlPanel control, final ContentPanel content) {
     m_control = control;
@@ -41,7 +41,7 @@ public class Drawing {
 
     @Override
     public void mouseReleased(MouseEvent event) {
-      m_Temp.zero();
+      m_Temp.zero(); // this wipes the co-ordinates on the temp Storage object so that it is not drawn in a visible place.
       mouseX2 = event.getX();
       mouseY2 = event.getY();
       if (m_control.getCurrentShape() == ControlPanel.MyShape.Text) {
@@ -52,12 +52,12 @@ public class Drawing {
       m_content.repaint();
     }
 
+    // This function fills the temp Storage object with the current X/Y values of the mouse so the user can see where the shape will end up.
     @Override
-    public void mouseDragged(MouseEvent mev) {
-
+    public void mouseDragged(MouseEvent event) {
       if (m_control.getCurrentShape() != ControlPanel.MyShape.Text) {
-        mouseX2 = mev.getX();
-        mouseY2 = mev.getY();
+        mouseX2 = event.getX();
+        mouseY2 = event.getY();
         m_Temp.setX1(mouseX1);
         m_Temp.setY1(mouseY1);
         m_Temp.setX2(mouseX2);
